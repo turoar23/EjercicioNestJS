@@ -53,3 +53,6 @@ El usuario puede:
     - Indicar si esta activo o no (no debe recibir mensajes si no esta activo)
     - Se guarda notificacion al recibir un mensaje
     - Consultar las notificaciones
+
+Para la BBDD se usará PostgreSQL usando una contenedor de docker para ejecutarla. Para la gestion de tokens de autenticación se usara Passport.
+PAra todas las rutas se usara de prefijo en la url la version de la API, que de momento sera la v1
