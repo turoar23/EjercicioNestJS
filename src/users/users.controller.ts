@@ -10,7 +10,6 @@ import {
   Request,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import CreateUserDto from './dto/createUser.dto';
 import UpdateUserDto from './dto/updateUser.dto';
 import { UsersService } from './users.service';
 
@@ -19,26 +18,26 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   // @UseGuards(JwtAuthGuard)
-  @Get()
+  // Just for development
+  @Get('allUsers')
   async getAllUsers() {
     return this.usersService.getAll();
   }
-  // @Get(':email')
-  // getUser(@Param('email') email: string) {
-  //   return this.usersService.getByEmail(email);
-  // }
+  // Return all the users that are active
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  async getUsersActive() {
+    return await this.usersService.getsByActive();
+  }
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
+  async getProfile(@Request() req) {
+    return await this.usersService.getProfile(req.user.username);
   }
 
-  /*@Post()
-  async createUser(@Body() user: CreateUserDto) {
-    return this.usersService.create(user);
-  }*/
-  @Put(':email')
-  updateUser(@Param('email') email: string, @Body() user: UpdateUserDto) {
-    return this.usersService.updateUser(email, user);
+  @UseGuards(JwtAuthGuard)
+  @Put()
+  updateUser(@Request() req, @Body() user: UpdateUserDto) {
+    return this.usersService.updateUser(req.user.username, user);
   }
 }

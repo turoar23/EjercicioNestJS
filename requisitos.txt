@@ -42,11 +42,11 @@ Message:
 Lógica
 
 El usuario puede:
- - Registrarse
- - Hacer Login y Logout
+ - Registrarse - Listo
+ - Hacer Login - Listo
  - Una vez hecho el login (se le devuelve un token de autorización)
-    - Consultar sus datos
-    - Editar sus datos
+    - Consultar sus datos - Listo
+    - Editar sus datos - Listo
     - Obtener lista de usuarios acivos
     - Enviar un mensaje
     - Consultar sus mensajes

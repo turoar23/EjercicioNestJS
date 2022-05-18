@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import CreateUserDto from './dto/createUser.dto';
 import UpdateUserDto from './dto/updateUser.dto';
 import User from './user.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -22,23 +23,24 @@ export class UsersService {
     );
   }
 
+  async getProfile(username: string) {
+    const user = await this.getByEmail(username);
+    user.password = undefined;
+    return user;
+  }
+
   async create(userData: CreateUserDto) {
-    //TODO: check before if the user already exists
-    // const userExist = await this.getByEmail(userData.username);
-    // if (userExist)
-    //   throw new HttpException(
-    //     'User with that email already exists',
-    //     HttpStatus.BAD_REQUEST,
-    //   );
     const newUser = await this.usersRepository.create(userData);
-    newUser.active = true;
+    newUser.active = true; // By default is true
     await this.usersRepository.save(newUser);
     return newUser;
   }
 
-  async updateUser(email: string, userData: UpdateUserDto) {
-    await this.usersRepository.update(email, userData);
-    const updatedUser = await this.usersRepository.findOne(email);
+  async updateUser(username: string, userData: UpdateUserDto) {
+    const user = await this.usersRepository.findOne({ username });
+    userData.password = await bcrypt.hash(userData.password, 10);
+    await this.usersRepository.update(user.id, userData);
+    const updatedUser = await this.usersRepository.findOne({ username });
     if (updatedUser) {
       updatedUser.password = undefined;
       return updatedUser;
@@ -48,5 +50,9 @@ export class UsersService {
 
   async getAll() {
     return this.usersRepository.find();
+  }
+  async getsByActive() {
+    const users = await this.usersRepository.find({ active: true });
+    return users;
   }
 }
