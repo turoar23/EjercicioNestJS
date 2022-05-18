@@ -1,0 +1,29 @@
+
+Ruta: /auth/login
+Metodo: Post
+Body: 
+ - username
+ - password
+Funcion: Permite obtener un token valido
+
+Ruta: /auth/register
+Metodo: Post
+Body:
+ - username
+ - password
+Funcion: Permite registrar un nuevo usuario
+
+Ruta: /users
+Metodo: Get
+Funcion: Devuelve la lista de usuarios activos
+
+Ruta: /users
+Metodo: Put
+Body:
+ - password: nueva contraseña
+ - active: nuevo valor del active
+Funcion: Actualiza los datos del usuario del token que se envia
+
+Ruta: /users/profile
+Metodo: Get
+Funcion: Devuelve los datos del usuario (menos la contraseña)

@@ -21,6 +21,7 @@ Existen 3 entidades: usuario, mensajes, notificaciones.
 Entidades:
 
 User:
+ - id (identificador del usuario)
  - username (sera unico, debe ser un email y este identifica al usuario del resto)
  - password (contraseña necesaria para poder hacer login)
  - active (Booleano que indica si el usuario esta activo o no)
@@ -28,7 +29,7 @@ User:
 Notification:
  - id (id que identifica a la notificacion del resto)
  - userId (usuario al que pertenece)
- - message (mensaje asociada a la notificacion)
+ - description (description de la notificacion)
  - read (si esta ya se habia devuelto alguna vez al usuario)
  - created_at (fecha de la notificación)
 
@@ -47,7 +48,7 @@ El usuario puede:
  - Una vez hecho el login (se le devuelve un token de autorización)
     - Consultar sus datos - Listo
     - Editar sus datos - Listo
-    - Obtener lista de usuarios acivos
+    - Obtener lista de usuarios acivos - Listo
     - Enviar un mensaje
     - Consultar sus mensajes
     - Indicar si esta activo o no (no debe recibir mensajes si no esta activo)
