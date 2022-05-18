@@ -1,0 +1,55 @@
+Historias de usuario
+
+Como USUARIO quiero poder llamar al API, es decir, quiero poder tener un servidor local al que hacer una llamada HTTP y que me devuelva algo.
+Como USUARIO quiero poder llamar al API para crear usuarios, teniendo en cuenta que no se podrán registrar dos veces con el mismo email.
+Como USUARIO quiero poder llamar al API para hacer login y obtener un token de autenticación para las siguientes peticiones.
+Como USUARIO quiero poder llamar al API para editar mis datos.
+Como USUARIO quiero poder llamar al API para consultar mis datos.
+Como USUARIO quiero poder llamar al API para obtener la lista de usuarios activos.
+Como USUARIO quiero poder llamar al API para crear un nuevo mensaje.
+Como USUARIO quiero poder llamar al API para consultar mis mensajes.
+Como USUARIO quiero poder llamar al API para indicar si estoy activo o no.
+Como USUARIO no quiero recibir mensajes si no estoy activo.
+Como USUARIO quiero que se guarden notificaciones cada vez que recibo un mensaje.
+Como USUARIO quiero poder llamar al API para consultar mis notificaciones.
+
+-------------------------------------------------------------
+
+Se va a desarrollar una API para poder realizar las historias de usuario usando NestJS.
+Existen 3 entidades: usuario, mensajes, notificaciones. 
+
+Entidades:
+
+User:
+ - email (sera unico y este identifica al usuario del resto)
+ - password (contraseña necesaria para poder hacer login)
+ - active (Booleano que indica si el usuario esta activo o no)
+
+Notification:
+ - id (id que identifica a la notificacion del resto)
+ - userId (usuario al que pertenece)
+ - message (mensaje asociada a la notificacion)
+ - read (si esta ya se habia devuelto alguna vez al usuario)
+ - created_at (fecha de la notificación)
+
+Message:
+ - id (id que identifica al mensaja del resto)
+ - from (id del usuario que envio el mensaje)
+ - to (id del usuario que recibe al que se le envio el mensaje)
+ - message (texto del mensaje enviado)
+ - created_at (fecha y hora a la que se creo el mensaje, que es cuando se ha enviado)
+
+Lógica
+
+El usuario puede:
+ - Registrarse
+ - Hacer Login y Logout
+ - Una vez hecho el login (se le devuelve un token de autorización)
+    - Consultar sus datos
+    - Editar sus datos
+    - Obtener lista de usuarios acivos
+    - Enviar un mensaje
+    - Consultar sus mensajes
+    - Indicar si esta activo o no (no debe recibir mensajes si no esta activo)
+    - Se guarda notificacion al recibir un mensaje
+    - Consultar las notificaciones
