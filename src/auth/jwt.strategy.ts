@@ -12,7 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: jwtConstants.secret,
     });
   }
-
+  // TODO: Change to return the complete user
   async validate(payload: any) {
     return { id: payload.sub, username: payload.username };
   }

@@ -27,3 +27,18 @@ Funcion: Actualiza los datos del usuario del token que se envia
 Ruta: /users/profile
 Metodo: Get
 Funcion: Devuelve los datos del usuario (menos la contraseña)
+
+Ruta: /messages/sended
+Metodo: Get
+Funcion: Devuelve una lista de los mensajes enviados
+
+Ruta: /messages/recieved
+Metodo: Get
+Funcion: Devuelve una lista de los mensajes recibidos
+
+Ruta: /messages
+Metodo: Post
+Body: 
+ - to: usuario que se envia un mensaje
+ - message: mensaje que se le envia al usuario
+Funcion: envia un mensaje al usuario. Esto se puede si esta activo. Si no, se produce un error.
