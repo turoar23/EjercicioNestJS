@@ -1,6 +1,6 @@
 export class UpdateUserDto {
-  email: string;
-  name: string;
+  id: number;
+  username: string;
   password: string;
   active: boolean;
 }

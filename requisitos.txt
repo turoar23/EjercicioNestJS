@@ -21,7 +21,7 @@ Existen 3 entidades: usuario, mensajes, notificaciones.
 Entidades:
 
 User:
- - email (sera unico y este identifica al usuario del resto)
+ - username (sera unico, debe ser un email y este identifica al usuario del resto)
  - password (contraseña necesaria para poder hacer login)
  - active (Booleano que indica si el usuario esta activo o no)
 

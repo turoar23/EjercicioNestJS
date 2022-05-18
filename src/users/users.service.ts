@@ -12,8 +12,8 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async getByEmail(email: string) {
-    const user = await this.usersRepository.findOne({ email });
+  async getByEmail(username: string) {
+    const user = await this.usersRepository.findOne({ username });
     // Check if the user was found with that email
     if (user) return user;
     throw new HttpException(
@@ -23,12 +23,13 @@ export class UsersService {
   }
 
   async create(userData: CreateUserDto) {
-    const userExist = await this.usersRepository.find(userData);
-    if (userExist)
-      throw new HttpException(
-        'User with that email already exists',
-        HttpStatus.BAD_REQUEST,
-      );
+    //TODO: check before if the user already exists
+    // const userExist = await this.getByEmail(userData.username);
+    // if (userExist)
+    //   throw new HttpException(
+    //     'User with that email already exists',
+    //     HttpStatus.BAD_REQUEST,
+    //   );
     const newUser = await this.usersRepository.create(userData);
     newUser.active = true;
     await this.usersRepository.save(newUser);
