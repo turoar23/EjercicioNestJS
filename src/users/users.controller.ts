@@ -18,7 +18,7 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   async getAllUsers() {
     return this.usersService.getAll();
@@ -33,10 +33,10 @@ export class UsersController {
     return req.user;
   }
 
-  @Post()
+  /*@Post()
   async createUser(@Body() user: CreateUserDto) {
     return this.usersService.create(user);
-  }
+  }*/
   @Put(':email')
   updateUser(@Param('email') email: string, @Body() user: UpdateUserDto) {
     return this.usersService.updateUser(email, user);
