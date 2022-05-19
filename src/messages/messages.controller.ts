@@ -25,4 +25,10 @@ export class MessagesController {
   getMessagesSended(@Request() req) {
     return this.messagesService.getMessagesSended(req.user.username);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('recieved')
+  getMessagesRecievedd(@Request() req) {
+    return this.messagesService.getMessagesRecieved(req.user.username);
+  }
 }

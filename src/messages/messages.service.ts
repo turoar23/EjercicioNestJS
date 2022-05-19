@@ -37,13 +37,6 @@ export class MessagesService {
 
   async getMessagesSended(username: string) {
     const user = await this.usersService.getByEmail(username);
-    console.log(user);
-    // const messages = await this.messageRepository.find({
-    //   relations: ['to'],
-    //   where: {
-    //     from: user,
-    //   },
-    // });
     const messages = await this.messageRepository
       .createQueryBuilder('messages')
       .where({ from: user })
@@ -56,6 +49,24 @@ export class MessagesService {
         'users.active',
       ])
       .leftJoin('messages.to', 'users')
+      .getMany();
+    return messages;
+  }
+
+  async getMessagesRecieved(username: string) {
+    const user = await this.usersService.getByEmail(username);
+    const messages = await this.messageRepository
+      .createQueryBuilder('messages')
+      .where({ to: user })
+      .select([
+        'messages.id',
+        'messages.message',
+        'messages.created_at',
+        'users.id',
+        'users.username',
+        'users.active',
+      ])
+      .leftJoin('messages.from', 'users')
       .getMany();
     return messages;
   }
