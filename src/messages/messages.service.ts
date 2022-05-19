@@ -19,10 +19,15 @@ export class MessagesService {
     const userSender = await this.usersService.getByEmail(sender);
     const userReciever = await this.usersService.getByEmail(newMessage.to);
 
-    // TODO: diferenciar los tipos de error
-    if (!userSender || !userReciever || !userReciever.active)
+    if (sender === newMessage.to) {
       throw new HttpException(
-        'The reciever dosent exist',
+        'Cant send a message to itself',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    if (!userReciever.active)
+      throw new HttpException(
+        'The reciever must be active',
         HttpStatus.BAD_REQUEST,
       );
 
@@ -37,6 +42,8 @@ export class MessagesService {
     await this.notificationService.create(userReciever.username, {
       description: `You have recieved a new message from ${userReciever.username} at the time ${message.created_at}`,
     });
+    message.from.password = undefined;
+    message.to.password = undefined;
     return message;
   }
   // async getRecievedMessages() {}
