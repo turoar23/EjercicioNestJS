@@ -28,7 +28,7 @@ User:
 
 Notification:
  - id (id que identifica a la notificacion del resto)
- - userId (usuario al que pertenece)
+ - user (usuario al que pertenece)
  - description (description de la notificacion)
  - read (si esta ya se habia devuelto alguna vez al usuario)
  - created_at (fecha de la notificación)
@@ -49,8 +49,8 @@ El usuario puede:
     - Consultar sus datos - Listo
     - Editar sus datos - Listo
     - Obtener lista de usuarios acivos - Listo
-    - Enviar un mensaje
-    - Consultar sus mensajes
+    - Enviar un mensaje - Listo
+    - Consultar sus mensajes - Listo
     - Indicar si esta activo o no (no debe recibir mensajes si no esta activo)
     - Se guarda notificacion al recibir un mensaje
     - Consultar las notificaciones

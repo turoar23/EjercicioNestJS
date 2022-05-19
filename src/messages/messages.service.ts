@@ -13,6 +13,7 @@ export class MessagesService {
     private usersService: UsersService,
   ) {}
 
+  //TODO: No esta devolviendo el mensaje creado
   async sendMessage(sender: string, newMessage: CreateMessageDto) {
     const userSender = await this.usersService.getByEmail(sender);
     const userReciever = await this.usersService.getByEmail(newMessage.to);
