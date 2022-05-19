@@ -55,4 +55,12 @@ export class UsersService {
     const users = await this.usersRepository.find({ active: true });
     return users;
   }
+  async toggleStatus(username: string) {
+    const user = await this.getByEmail(username);
+    user.active = !user.active;
+    await this.usersRepository.save(user);
+    user.password = undefined;
+
+    return user;
+  }
 }

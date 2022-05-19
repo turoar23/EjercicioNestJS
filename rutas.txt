@@ -1,3 +1,4 @@
+Todas las rutas deben usar el prefijo /api/v1
 
 Ruta: /auth/login
 Metodo: Post
@@ -28,6 +29,10 @@ Ruta: /users/profile
 Metodo: Get
 Funcion: Devuelve los datos del usuario (menos la contraseña)
 
+Ruta: /users/toggleStatus
+Metodo: Get
+Funcion: Cambiar el valor active del usuario. Si esta activo lo activa y viceversa
+
 Ruta: /messages/sended
 Metodo: Get
 Funcion: Devuelve una lista de los mensajes enviados
@@ -42,3 +47,11 @@ Body:
  - to: usuario que se envia un mensaje
  - message: mensaje que se le envia al usuario
 Funcion: envia un mensaje al usuario. Esto se puede si esta activo. Si no, se produce un error.
+
+Ruta: /notifications
+Metodo: Get
+Funcion: Devuelve todas las notificaciones asociadas al usuario. Se marcan todas como leidas
+
+Ruta: /notifications/news
+Metodo: Get
+Funcion: Devuelve todas las notificaciones no leidas por el usuario. Se marcan todas como leidas

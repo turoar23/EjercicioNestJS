@@ -40,4 +40,10 @@ export class UsersController {
   updateUser(@Request() req, @Body() user: UpdateUserDto) {
     return this.usersService.updateUser(req.user.username, user);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('toggleStatus')
+  async toggleStatus(@Request() req) {
+    return this.usersService.toggleStatus(req.user.username);
+  }
 }
