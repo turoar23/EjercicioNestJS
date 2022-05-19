@@ -13,7 +13,7 @@ export class NotificationsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get('news')
   async getNewsNotifications(@Request() req) {
     return await this.notificationsService.getNewNotifications(
       req.user.username,

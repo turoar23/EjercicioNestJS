@@ -17,7 +17,10 @@ export class MessagesController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async sendMessage(@Request() req, @Body() messageData: CreateMessageDto) {
-    await this.messagesService.sendMessage(req.user.username, messageData);
+    return await this.messagesService.sendMessage(
+      req.user.username,
+      messageData,
+    );
   }
 
   @UseGuards(JwtAuthGuard)
