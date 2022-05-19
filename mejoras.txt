@@ -1,0 +1,8 @@
+Posibles mejoras:
+- Cuando se valida un usuario, adjuntar la entidad del usuario al req. Actualmente se adjunta el id y el username, por lo que cada vez que se usa se tiene que cargar el usuario.
+- Permitir escoger si se quiere marcar una notificación como leída. En lugar de marcar todas como leídas una vez se carguen, se puede marcar las que el usuario quiera dejar como no leídas.
+- Vincular los mensajes: permitir responder a un mensaje y para ello adjuntar cual es el mensaje padre de ese mensaje. 
+- Mejorar la forma de editar un usuario. Separar las rutas de editar un usuario de modo que la contraseña y el resto de datos se actualicen de forma separada.
+- Incluir más métodos de login. Ya que se usa Passport, este incluye otras formas de hacer login como usando la cuenta de Google, Facebook, etc.
+- Poder recuperar la contraseña. Hacer la lógica de recuperación de contraseña enviando un correo al username del usuario.
+- Indicar una nueva notificación por correo y que el usuario defina si quiere esto.

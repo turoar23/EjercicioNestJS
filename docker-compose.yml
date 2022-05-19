@@ -26,6 +26,19 @@ services:
     networks:
       - postgres
 
+  nestjs:
+    links:
+      - postgres:postgres
+    container_name: nestjs-app
+    ports:
+      - '3000:3000'
+    command: npm run start:dev
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - postgres
+
 networks:
   postgres:
     driver: bridge
