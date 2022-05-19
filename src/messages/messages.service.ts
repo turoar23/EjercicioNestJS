@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { NotificationsService } from 'src/notifications/notifications.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import CreateMessageDto from './dto/createMessage.dto';
@@ -11,6 +12,7 @@ export class MessagesService {
     @InjectRepository(Message)
     private messageRepository: Repository<Message>,
     private usersService: UsersService,
+    private notificationService: NotificationsService,
   ) {}
 
   //TODO: No esta devolviendo el mensaje creado
@@ -32,6 +34,10 @@ export class MessagesService {
       created_at: new Date(),
     });
     await this.messageRepository.save(message);
+    // Create a notification to the person who was sended the message
+    await this.notificationService.create(userReciever.username, {
+      description: `You have recieved a new message from ${userReciever.username} at the time ${message.created_at}`,
+    });
     return message;
   }
   // async getRecievedMessages() {}
