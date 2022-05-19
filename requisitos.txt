@@ -51,7 +51,7 @@ El usuario puede:
     - Obtener lista de usuarios acivos - Listo
     - Enviar un mensaje - Listo
     - Consultar sus mensajes - Listo
-    - Indicar si esta activo o no (no debe recibir mensajes si no esta activo)
+    - Indicar si esta activo o no (no debe recibir mensajes si no esta activo) - Listo
     - Se guarda notificacion al recibir un mensaje - Listo
     - Consultar las notificaciones - Listo
 
